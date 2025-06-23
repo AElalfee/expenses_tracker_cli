@@ -36,3 +36,9 @@ def update_expenses(id: int, amount: float = None, description: str = None):
             if description:
                 expense["Description"] = description
             save_expenses(expenses)
+
+
+def delete_expenses(id: int):
+    expenses = load_expenses()
+    expenses = [expense for expense in expenses if int(expense["ID"]) != id]
+    save_expenses(expenses)
