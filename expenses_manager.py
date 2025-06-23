@@ -56,6 +56,7 @@ def summary(month: int = None):
             if get_year(expense["Date"]) == current_year:
                 total = total + float(expense["Amount"].replace("AED ", ""))
         print(f"Total Expenses: AED {total}")
+        return
 
     for expense in expenses:
         if (
