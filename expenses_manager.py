@@ -1,5 +1,5 @@
 from storage import load_expenses, save_expenses
-from utils import get_amount, get_month, get_year, today
+from utils import get_amount, get_month, get_year, today, get_month_name
 
 
 def add_expenses(amount: float, description: str):
@@ -61,4 +61,8 @@ def summary(month: int = None):
             and get_month(expense["Date"]) == month
         ):
             total = total + get_amount(expense["Amount"])
-    return f"Total Expenses: AED {total}"
+    return f"Total Expenses in {get_month_name(month)}: AED {total}"
+
+
+if __name__ == "__main__":
+    print(summary(6))
