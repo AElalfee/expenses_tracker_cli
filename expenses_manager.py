@@ -1,5 +1,5 @@
 from storage import load_expenses, save_expenses
-from datetime import date
+from datetime import date, datetime
 
 
 def add_expenses(amount: float, description: str):
@@ -42,3 +42,26 @@ def delete_expenses(id: int):
     expenses = load_expenses()
     expenses = [expense for expense in expenses if int(expense["ID"]) != id]
     save_expenses(expenses)
+
+
+def summary(month: int = None):
+    total = 0
+    expenses = load_expenses()
+    current_year = date.today().year
+
+    if month is None:
+        for expense in expenses:
+            if (
+                datetime.strptime(expense["Date"], "%Y-%m-%d").date().year
+                == current_year
+            ):
+                total = total + float(expense["Amount"].replace("AED ", ""))
+        return f"Total Expenses: AED {total}"
+
+    for expense in expenses:
+        if (
+            datetime.strptime(expense["Date"], "%Y-%m-%d").date().year == current_year
+            and datetime.strptime(expense["Date"], "%Y-%m-%d").date().month == month
+        ):
+            total = total + float(expense["Amount"].replace("AED ", ""))
+    return f"Total Expenses: AED {total}"
