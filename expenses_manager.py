@@ -20,3 +20,8 @@ def add_expenses(amount: float, description: str):
 
 def get_expenses():
     return load_expenses()
+
+
+def get_expense_by_id(id: int):
+    expenses = load_expenses()
+    return [expense for expense in expenses if int(expense["ID"]) == id]
