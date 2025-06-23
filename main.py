@@ -59,7 +59,7 @@ def main():
     elif args.command == "list":
         print(get_expenses())
     elif args.command == "summary":
-        print(summary(args.month))
+        summary(args.month)
     elif args.command == "update":
         update_expenses(args.id, args.amount, args.description)
     elif args.command == "delete":

@@ -36,12 +36,14 @@ def update_expenses(id: int, amount: float = None, description: str = None):
             if description:
                 expense["Description"] = description
             save_expenses(expenses)
+            print("Expenses updated successfully.")
 
 
 def delete_expenses(id: int):
     expenses = load_expenses()
     expenses = [expense for expense in expenses if int(expense["ID"]) != id]
     save_expenses(expenses)
+    print("Expenses deleted successfully.")
 
 
 def summary(month: int = None):
@@ -53,7 +55,7 @@ def summary(month: int = None):
         for expense in expenses:
             if get_year(expense["Date"]) == current_year:
                 total = total + float(expense["Amount"].replace("AED ", ""))
-        return f"Total Expenses: AED {total}"
+        print(f"Total Expenses: AED {total}")
 
     for expense in expenses:
         if (
@@ -61,4 +63,4 @@ def summary(month: int = None):
             and get_month(expense["Date"]) == month
         ):
             total = total + get_amount(expense["Amount"])
-    return f"Total Expenses in {get_month_name(month)}: AED {total}"
+    print(f"Total Expenses in {get_month_name(month)}: AED {total}")
