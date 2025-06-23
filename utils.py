@@ -1,4 +1,5 @@
 from datetime import date, datetime
+import calendar
 
 
 def get_year(date: date):
@@ -7,6 +8,13 @@ def get_year(date: date):
 
 def get_month(date: date):
     return datetime.strptime(date, "%Y-%m-%d").date().month
+
+
+def get_month_name(month: int) -> str:
+    if 1 <= month <= 12:
+        return calendar.month_name(month)
+    else:
+        return "Month must be between 1 and 12."
 
 
 def today():
