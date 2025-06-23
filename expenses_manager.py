@@ -25,3 +25,14 @@ def get_expenses():
 def get_expense_by_id(id: int):
     expenses = load_expenses()
     return [expense for expense in expenses if int(expense["ID"]) == id]
+
+
+def update_expenses(id: int, amount: float = None, description: str = None):
+    expenses = load_expenses()
+    for expense in expenses:
+        if int(expense["ID"]) == id:
+            if amount:
+                expense["Amount"] = amount
+            if description:
+                expense["Description"] = description
+            save_expenses(expenses)
