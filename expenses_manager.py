@@ -62,7 +62,3 @@ def summary(month: int = None):
         ):
             total = total + get_amount(expense["Amount"])
     return f"Total Expenses in {get_month_name(month)}: AED {total}"
-
-
-if __name__ == "__main__":
-    print(summary(6))
