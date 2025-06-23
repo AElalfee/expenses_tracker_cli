@@ -16,3 +16,7 @@ def add_expenses(description: str, amount: float):
     expenses.append(expense)
     save_expenses(expenses)
     print(f"Expenses added successfully (ID: {expense['ID']})")
+
+
+def get_expenses():
+    return load_expenses()
